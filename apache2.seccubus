@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+
+  ServerAdmin webmaster@localhost
+  DocumentRoot /opt/seccubus/www/
+
+  LogLevel info
+
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+
+  <Location />
+    Allow from all
+    Require all granted
+    # Allow from .example.com
+    AddHandler cgi-script .pl
+    Options ExecCGI
+  </Location>
+
+</VirtualHost>
