@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
- apache2 mysql-server ruby libalgorithm-diff-perl libjson-perl libxml-simple-perl libhtml-tree-perl libapache2-mod-perl2 wget \
+ apache2 apache2-utils mysql-server ruby libalgorithm-diff-perl libjson-perl libxml-simple-perl libhtml-tree-perl libapache2-mod-perl2 wget \
  && rm -rf /var/lib/apt/lists/*
 
 COPY apache2.seccubus /etc/apache2/sites-available/seccubus.working

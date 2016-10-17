@@ -8,11 +8,12 @@
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 
+  <Directory /opt/seccubus/www>
+    AllowOverride all
+    Require all granted
+  </Directory>
 
   <Location />
-    Allow from all
-    Require all granted
-    # Allow from .example.com
     AddHandler cgi-script .pl
     Options ExecCGI
   </Location>
