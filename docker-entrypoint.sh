@@ -1,11 +1,15 @@
 #!/bin/bash
 set -e
 
+SECVER=2.26
+SECDEB=seccubus_2.26.1_amd64.deb
+DBVER=8
+
 service apache2 start
 
 if [ ! -f "/seccubus_2.26.1_amd64.deb" ]; then #check whether seccubus is already installed
-    wget https://github.com/schubergphilis/Seccubus_v2/releases/download/2.26/seccubus_2.26.1_amd64.deb 
-    dpkg --force-all -i seccubus_2.26.1_amd64.deb
+    wget https://github.com/schubergphilis/Seccubus_v2/releases/download/${SECVER}/${SECDEB} 
+    dpkg --force-all -i ${SECDEB}
 
     cp /etc/apache2/sites-available/seccubus.working /etc/apache2/sites-available/seccubus.conf
 fi
@@ -23,8 +27,8 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then #check whether the DB is initialized.
     flush privileges;
 EOF
 
-    /usr/bin/mysql -u seccubus -pseccubus seccubus < /var/lib/seccubus/structure_v8.mysql
-    /usr/bin/mysql -u seccubus -pseccubus seccubus < /var/lib/seccubus/data_v8.mysql
+    /usr/bin/mysql -u seccubus -pseccubus seccubus < /var/lib/seccubus/structure_v${DBVER}.mysql
+    /usr/bin/mysql -u seccubus -pseccubus seccubus < /var/lib/seccubus/data_v${DBVER}.mysql
 fi
 
 service mysql restart
